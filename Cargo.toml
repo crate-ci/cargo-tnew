@@ -2,7 +2,7 @@
 resolver = "2"
 
 [workspace.package]
-repository = "REPOSITORY"
+repository = "https://github.com/crate-ci/cargo-tnew"
 license = "MIT OR Apache-2.0"
 edition = "2021"
 rust-version = "1.65.0"  # MSRV
