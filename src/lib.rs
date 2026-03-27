@@ -1,4 +1,4 @@
-//! > DESCRIPTION
+//! > Experimental `cargo new` with templates
 
 #![cfg_attr(docsrs, feature(doc_cfg))]
 #![warn(clippy::print_stderr)]

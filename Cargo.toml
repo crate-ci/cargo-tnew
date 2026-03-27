@@ -95,9 +95,9 @@ lto = true
 # debug = "line-tables-only"  # requires Cargo 1.71
 
 [package]
-name = "PROJECT"
+name = "cargo-tnew"
 version = "0.0.1"
-description = "DESCRIPTION"
+description = "Experimental `cargo new` with templates"
 categories = []
 keywords = []
 repository.workspace = true

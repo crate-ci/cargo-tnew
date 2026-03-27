@@ -1,10 +1,10 @@
-# PROJECT
+# cargo-tnew
 
-> DESCRIPTION
+> Experimental `cargo new` with template
 
 [![Documentation](https://img.shields.io/badge/docs-master-blue.svg)][Documentation]
-![License](https://img.shields.io/crates/l/PROJECT.svg)
-[![Crates Status](https://img.shields.io/crates/v/PROJECT.svg)][Crates.io]
+![License](https://img.shields.io/crates/l/cargo-tnew.svg)
+[![Crates Status](https://img.shields.io/crates/v/cargo-tnew.svg)][Crates.io]
 
 ## License
 
@@ -22,5 +22,5 @@ submitted for inclusion in the work by you, as defined in the Apache-2.0
 license, shall be dual-licensed as above, without any additional terms or
 conditions.
 
-[Crates.io]: https://crates.io/crates/PROJECT
-[Documentation]: https://docs.rs/PROJECT
+[Crates.io]: https://crates.io/crates/cargo-tnew
+[Documentation]: https://docs.rs/cargo-tnew

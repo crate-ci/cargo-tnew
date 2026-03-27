@@ -8,4 +8,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased] - ReleaseDate
 
 <!-- next-url -->
-[Unreleased]: https://github.com/ORG/PROJECT/compare/e7b7555...HEAD
+[Unreleased]: https://github.com/crate-ci/cargo-tnew/compare/c50fd0ff30ae5c57c47a26be817e261923a315b9...HEAD
