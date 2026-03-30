@@ -5,7 +5,7 @@ use cargo_test_support::str;
 #[cargo_test]
 fn case() {
     snapbox::cmd::Command::cargo_ui()
-        .arg("t-new")
+        .arg("tnew")
         .arg("--help")
         .assert()
         .success()
