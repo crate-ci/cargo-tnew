@@ -5,13 +5,13 @@ use clap::Parser;
 #[command(bin_name = "cargo")]
 #[command(styles = clap_cargo::style::CLAP_STYLING)]
 pub(crate) enum Command {
-    TNew,
+    Tnew,
 }
 
 impl Command {
     pub(crate) fn exec(self) -> CargoResult<()> {
         match self {
-            Self::TNew => Ok(()),
+            Self::Tnew => Ok(()),
         }
     }
 }
