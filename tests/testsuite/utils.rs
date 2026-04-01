@@ -30,7 +30,7 @@ impl CargoProjectExt for Project {
 
 /// Path to the cargo binary
 fn cargo_exe() -> PathBuf {
-    snapbox::cmd::cargo_bin!("cargo-tnew").to_path_buf()
+    cargo_test_support::snapbox::cmd::cargo_bin!("cargo-tnew").to_path_buf()
 }
 
 /// Test the cargo command
@@ -38,7 +38,7 @@ pub trait CargoCommandExt {
     fn cargo_ui() -> Self;
 }
 
-impl CargoCommandExt for snapbox::cmd::Command {
+impl CargoCommandExt for cargo_test_support::snapbox::cmd::Command {
     fn cargo_ui() -> Self {
         Self::new(cargo_exe())
             .with_assert(compare::assert_ui())
