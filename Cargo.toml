@@ -5,7 +5,7 @@ resolver = "2"
 repository = "https://github.com/crate-ci/cargo-tnew"
 license = "MIT OR Apache-2.0"
 edition = "2021"
-rust-version = "1.93.0"  # MSRV
+rust-version = "1.94.0"  # MSRV
 include = [
   "build.rs",
   "src/**/*",
