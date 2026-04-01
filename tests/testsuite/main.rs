@@ -1,4 +1,4 @@
-mod cargo_tnew;
+mod cargo_new;
 mod utils;
 
 pub mod prelude {
