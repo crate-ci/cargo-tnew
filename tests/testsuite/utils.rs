@@ -25,7 +25,6 @@ impl CargoProjectExt for Project {
         let cargo = cargo_exe();
         let mut execs = self.process(&cargo);
         execs.env("CLICOLOR_FORCE", "1");
-        execs.env("CARGO", cargo);
         execs.arg_line(cmd);
         execs
     }
