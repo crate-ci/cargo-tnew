@@ -6,7 +6,7 @@ use cargo_test_support::str;
 fn case() {
     snapbox::cmd::Command::cargo_ui()
         .env("CLICOLOR_FORCE", "1")
-        .arg("tnew")
+        .arg("new")
         .arg("--help")
         .assert()
         .success()
