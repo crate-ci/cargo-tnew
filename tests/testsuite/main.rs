@@ -1,4 +1,9 @@
+#![allow(clippy::all)]
+#![allow(clippy::pedantic)]
+#![allow(clippy::restriction)]
+
 mod cargo_new;
+mod new;
 mod utils;
 
 pub mod prelude {

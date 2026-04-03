@@ -2,15 +2,14 @@
 #![warn(clippy::print_stderr)]
 #![warn(clippy::print_stdout)]
 
-use std::process;
+use cargo_tnew::util::GlobalContext;
 
 mod cli;
 mod tnew;
 
 fn main() {
-    if let Err(err) = cli::main() {
-        anstream::eprintln!("error: {err:?}");
-
-        process::exit(1);
+    let gctx = GlobalContext::new();
+    if let Err(err) = cli::main(&gctx) {
+        cargo_tnew::exit_with_error(err, &mut gctx.shell());
     }
 }

@@ -3,6 +3,8 @@ use clap::ArgAction;
 use clap::ArgMatches;
 use clap::Command;
 
+use cargo_tnew::ops::cargo_new::{self, NewOptions, VersionControl};
+use cargo_tnew::util::GlobalContext;
 use cargo_tnew::CargoResult;
 
 pub(crate) fn cli() -> Command {
@@ -27,7 +29,11 @@ pub(crate) fn cli() -> Command {
         )
         .arg(flag("bin", "Use a binary (application) template [default]"))
         .arg(flag("lib", "Use a library template"))
-        .arg(opt("edition", "Edition to set for the crate generated").value_name("YEAR"))
+        .arg(
+            opt("edition", "Edition to set for the crate generated")
+                .value_parser(["2015", "2018", "2021", "2024"])
+                .value_name("YEAR"),
+        )
         .arg(
             opt(
                 "name",
@@ -49,6 +55,25 @@ pub(crate) fn opt(name: &'static str, help: &'static str) -> Arg {
     Arg::new(name).long(name).help(help).action(ArgAction::Set)
 }
 
-pub(crate) fn exec(_args: &ArgMatches) -> CargoResult<()> {
-    Ok(())
+pub(crate) fn exec(args: &ArgMatches, gctx: &GlobalContext) -> CargoResult<()> {
+    let opts = new_options(args, gctx)?;
+    cargo_new::new(&opts, gctx)
+}
+
+fn new_options(args: &ArgMatches, gctx: &GlobalContext) -> CargoResult<NewOptions> {
+    let version_control = args
+        .get_one::<String>("vcs")
+        .map(|vcs| vcs.parse::<VersionControl>())
+        .transpose()?;
+
+    NewOptions::new(
+        version_control,
+        args.get_flag("bin"),
+        args.get_flag("lib"),
+        gctx.cwd()
+            .join(args.get_one::<String>("path").expect("required by clap")),
+        args.get_one::<String>("name").cloned(),
+        args.get_one::<String>("edition").cloned(),
+        args.get_one::<String>("registry").cloned(),
+    )
 }

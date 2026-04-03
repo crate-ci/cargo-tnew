@@ -50,3 +50,18 @@ impl CargoCommandExt for snapbox::cmd::Command {
             .test_env()
     }
 }
+
+/// Run `cargo $arg_line`, see [`Execs`]
+pub(crate) fn cargo_process(arg_line: &str) -> Execs {
+    if arg_line.starts_with("new ") {
+        let cargo = cargo_exe();
+        let mut p = cargo_test_support::process(&cargo);
+        p.arg_line(arg_line);
+        cargo_test_support::execs().with_process_builder(p)
+    } else {
+        let cargo = std::env::var_os("CARGO").unwrap();
+        let mut p = cargo_test_support::process(&cargo);
+        p.arg_line(arg_line);
+        cargo_test_support::execs().with_process_builder(p)
+    }
+}
