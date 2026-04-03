@@ -125,7 +125,7 @@ default = []
 [dependencies]
 anstream = "1.0.0"
 anyhow = "1.0.102"
-clap = { version = "4.6.0", features = ["derive"] }
+clap = "4.6.0"
 clap-cargo = "0.18.3"
 
 [dev-dependencies]
