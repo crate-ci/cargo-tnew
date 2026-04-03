@@ -24,6 +24,7 @@ impl CargoProjectExt for Project {
     fn cargo(&self, cmd: &str) -> Execs {
         let cargo = cargo_exe();
         let mut execs = self.process(&cargo);
+        execs.env("CLICOLOR_FORCE", "1");
         execs.env("CARGO", cargo);
         execs.arg_line(cmd);
         execs
@@ -44,6 +45,7 @@ impl CargoCommandExt for snapbox::cmd::Command {
     fn cargo_ui() -> Self {
         Self::new(cargo_exe())
             .with_assert(compare::assert_ui())
+            .env("CLICOLOR_FORCE", "1")
             .env("CARGO_TERM_COLOR", "always")
             .env("CARGO_TERM_HYPERLINKS", "true")
             .test_env()
