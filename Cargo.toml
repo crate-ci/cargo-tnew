@@ -23,7 +23,7 @@ unreachable_pub = "warn"
 unsafe_op_in_unsafe_fn = "warn"
 unused_lifetimes = "warn"
 unused_macro_rules = "warn"
-unused_qualifications = "warn"
+#unused_qualifications = "warn"
 
 [workspace.lints.clippy]
 bool_assert_comparison = "allow"
@@ -125,8 +125,19 @@ default = []
 [dependencies]
 anstream = "1.0.0"
 anyhow = "1.0.102"
+cargo-util = { git = "https://github.com/rust-lang/cargo.git" }
+cargo-util-schemas = { git = "https://github.com/rust-lang/cargo.git" }
+cargo-util-terminal = { git = "https://github.com/rust-lang/cargo.git" }
+cargo_metadata = "0.23.1"
 clap = "4.6.0"
 clap-cargo = "0.18.3"
+git2 = "0.20.4"
+glob = "0.3.3"
+home = "0.5.12"
+pathdiff = "0.2.3"
+serde = { version = "1.0.228", features = ["derive"] }
+toml_edit = "0.25.10"
+tracing = "0.1.44"
 
 [dev-dependencies]
 cargo-test-support = { git = "https://github.com/rust-lang/cargo.git" }

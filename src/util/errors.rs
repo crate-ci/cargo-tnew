@@ -1,3 +1,5 @@
+use std::fmt;
+
 /// Common result type
 pub type CargoResult<T> = anyhow::Result<T>;
 
@@ -62,4 +64,8 @@ impl From<std::io::Error> for CliError {
     fn from(err: std::io::Error) -> CliError {
         CliError::new(err.into(), 1)
     }
+}
+
+pub fn internal<S: fmt::Display>(error: S) -> anyhow::Error {
+    anyhow::format_err!("{error}")
 }
