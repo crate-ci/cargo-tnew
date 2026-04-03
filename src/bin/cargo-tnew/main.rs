@@ -2,17 +2,14 @@
 #![warn(clippy::print_stderr)]
 #![warn(clippy::print_stdout)]
 
-mod cli;
-
 use std::process;
 
-use clap::Parser;
+mod cli;
+mod tnew;
 
 fn main() {
-    let args = cli::Command::parse();
-
-    if let Err(err) = args.exec() {
-        anstream::eprintln!("Error: {err:?}");
+    if let Err(err) = cli::main() {
+        anstream::eprintln!("error: {err:?}");
 
         process::exit(1);
     }
