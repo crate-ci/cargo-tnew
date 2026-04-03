@@ -2,6 +2,8 @@ use std::path::PathBuf;
 
 use cargo_test_support::{compare, ArgLineCommandExt, Execs, Project, TestEnvCommandExt};
 
+use crate::prelude::*;
+
 pub trait CargoProjectExt {
     /// Creates a `ProcessBuilder` to run cargo.
     ///
@@ -22,6 +24,7 @@ impl CargoProjectExt for Project {
     fn cargo(&self, cmd: &str) -> Execs {
         let cargo = cargo_exe();
         let mut execs = self.process(&cargo);
+        execs.env("CLICOLOR_FORCE", "1");
         execs.env("CARGO", cargo);
         execs.arg_line(cmd);
         execs
@@ -30,7 +33,7 @@ impl CargoProjectExt for Project {
 
 /// Path to the cargo binary
 fn cargo_exe() -> PathBuf {
-    cargo_test_support::snapbox::cmd::cargo_bin!("cargo-tnew").to_path_buf()
+    snapbox::cmd::cargo_bin!("cargo-tnew").to_path_buf()
 }
 
 /// Test the cargo command
@@ -38,10 +41,11 @@ pub trait CargoCommandExt {
     fn cargo_ui() -> Self;
 }
 
-impl CargoCommandExt for cargo_test_support::snapbox::cmd::Command {
+impl CargoCommandExt for snapbox::cmd::Command {
     fn cargo_ui() -> Self {
         Self::new(cargo_exe())
             .with_assert(compare::assert_ui())
+            .env("CLICOLOR_FORCE", "1")
             .env("CARGO_TERM_COLOR", "always")
             .env("CARGO_TERM_HYPERLINKS", "true")
             .test_env()

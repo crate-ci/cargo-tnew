@@ -4,9 +4,8 @@ use cargo_test_support::str;
 
 #[cargo_test]
 fn case() {
-    cargo_test_support::snapbox::cmd::Command::cargo_ui()
-        .env("CLICOLOR_FORCE", "1")
-        .arg("tnew")
+    snapbox::cmd::Command::cargo_ui()
+        .arg("new")
         .arg("--help")
         .assert()
         .success()
