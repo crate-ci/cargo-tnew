@@ -39,6 +39,10 @@ If `--bin` is specified, `cargo new` SHALL create a package with a binary build 
 [_*_](#r-kind.lib)
 If `--lib` is specified, `cargo new` SHALL create a package with a library build target.
 
+<a id="r-kind.workspace"></a>
+[_*_](#r-kind.workspace)
+If `--workspace` is specified, `cargo new` SHALL create a virtual workspace.
+
 <a id="r-kind.default"></a>
 [_*_](#r-kind.default)
 If no output kind is specified,
@@ -125,11 +129,61 @@ The package name SHALL default to the final path component when `--name` is not 
 [_*_](#r-name.warn-non-ascii)
 `cargo new` SHALL warn for names that are not ASCII.
 
+## Workspace output
+
+<a id="r-workspace.create-cargo-toml"></a>
+[_*_](#r-workspace.create-cargo-toml)
+`cargo new` SHALL create a `Cargo.toml` file in the destination package directory for workspace output kind.
+
+<a id="r-package.status"></a>
+[_*_](#r-package.status)
+`cargo new` SHALL print a "creation" status message describing the workspace being created.
+
+<a id="r-workspace.status"></a>
+[_*_](#r-workspace.status)
+`cargo new` SHALL print a creation status message describing the workspace being created.
+
+<a id="r-workspace.name"></a>
+[_*_](#r-workspace.name)
+`cargo new` SHALL reject `--name`.
+
+<a id="r-workspace.workspace"></a>
+[_*_](#r-workspace.workspace)
+The generated manifest SHALL include a `[workspace]` table.
+
+<a id="r-workspace.resolver"></a>
+[_*_](#r-workspace.resolver)
+The generated manifest SHALL set `workspace.resolver` to the Cargo resolver version that corresponds to `workspace.package.edition`.
+
+<a id="r-workspace.package"></a>
+[_*_](#r-workspace.package)
+The generated manifest SHALL include a `[workspace.package]` table.
+
+<a id="r-workspace.edition-option"></a>
+[_*_](#r-workspace.edition-option)
+If `--edition` is supplied, the generated manifest SHALL use that for `workspace.package.edition`.
+
+<a id="r-workspace.edition-default"></a>
+[_*_](#r-workspace.edition-default)
+If `--edition` is not supplied, the generated manifest SHALL use the latest stable edition for `workspace.package.edition`.
+
+<a id="r-workspace.edition-valid"></a>
+[_*_](#r-workspace.edition-valid)
+The `--edition` option SHALL accept only supported Rust edition values.
+
+<a id="r-workspace.registry"></a>
+[_*_](#r-workspace.registry)
+If `--registry` is supplied, the generated manifest SHALL use that for `workspace.package.publish`.
+
+<a id="r-workspace.dependencies"></a>
+[_*_](#r-workspace.dependencies)
+The generated manifest SHALL include an empty `[workspace.dependencies]` table.
+
 ## Package output
 
 <a id="r-package.create-cargo-toml"></a>
 [_*_](#r-package.create-cargo-toml)
-`cargo new` SHALL create a `Cargo.toml` file in the destination package directory.
+`cargo new` SHALL create a `Cargo.toml` file in the destination package directory for bin and lib output kinds.
 
 <a id="r-package.status"></a>
 [_*_](#r-package.status)
