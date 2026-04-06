@@ -187,37 +187,35 @@ When added as a workspace member, `cargo new` SHALL inherit `[workspace.package]
 [_*_](#r-package.workspace.lints)
 When added as a workspace member, `cargo new` SHALL inherit `[workspace.lints]` in the generated manifest.
 
-## Build-target output
+## Bin output kind
 
-<a id="r-target.bin"></a>
-[_*_](#r-target.bin)
+<a id="r-bin.src"></a>
+[_*_](#r-bin.src)
 The binary output kind SHALL generate `src/main.rs`.
 
-<a id="r-target.bin-compile"></a>
-[_*_](#r-target.bin-compile)
-A generated binary entrypoint SHALL be a compilable Rust program.
+<a id="r-bin.main"></a>
+[_*_](#r-bin.main)
+Generated source content SHALL include a minimal `main` function.
 
-<a id="r-target.bin-main"></a>
-[_*_](#r-target.bin-main)
-Generated source content for a binary package SHALL include a minimal `main` function.
+## Lib output kind
 
-<a id="r-target.lib"></a>
-[_*_](#r-target.lib)
+<a id="r-lib.src"></a>
+[_*_](#r-lib.src)
 The library output kind SHALL generate `src/lib.rs`.
 
-<a id="r-target.lib-compile"></a>
-[_*_](#r-target.lib-compile)
-A generated library source file SHALL be a compilable Rust library source file.
-
-<a id="r-target.lib-fn"></a>
-[_*_](#r-target.lib-fn)
-Generated source content for a library package SHALL include a minimal library function and a passing unit test.
-
-<a id="r-target.rustfmt"></a>
-[_*_](#r-target.rustfmt)
-`cargo new` SHOULD format newly created Rust source files with `rustfmt` when that formatter is available.
+<a id="r-lib.fn"></a>
+[_*_](#r-lib.fn)
+Generated source content SHALL include a minimal library function and a passing unit test.
 
 ## Exit behavior
+
+<a id="r-exit.compile"></a>
+[_*_](#r-exit.compile)
+`cargo new` SHALL generate compilable output.
+
+<a id="r-exit.rustfmt"></a>
+[_*_](#r-exit.rustfmt)
+`cargo new` SHOULD format newly created Rust source files with `rustfmt` when that formatter is available.
 
 <a id="r-exit.documentation"></a>
 [_*_](#r-exit.documentation)

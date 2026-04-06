@@ -27,7 +27,7 @@ fn create_default_gitconfig() {
     .unwrap();
 }
 
-/// Primary spec: `r-target.lib-fn`.
+/// Primary spec: `r-lib.fn`.
 #[cargo_test]
 fn simple_lib() {
     cargo_process("new --lib foo --vcs none --edition 2015")
@@ -67,7 +67,7 @@ mod tests {
     cargo_process("build").cwd(&paths::root().join("foo")).run();
 }
 
-/// Primary spec: `r-target.bin-main`.
+/// Primary spec: `r-bin.main`.
 #[cargo_test]
 fn simple_bin() {
     cargo_process("new --bin foo --edition 2015")
