@@ -132,7 +132,7 @@ The package name SHALL default to the final path component when `--name` is not 
 `cargo new` SHALL create a `Cargo.toml` file in the destination package directory.
 
 <a id="r-package.status"></a>
-[_*_](#r-exit.creation)
+[_*_](#r-package.status)
 `cargo new` SHALL print a creation status message describing the package being created.
 
 <a id="r-package.name"></a>
@@ -176,7 +176,7 @@ If a potential ancestor workspace manifest is invalid, `cargo new` SHOULD warn i
 When an ancestor workspace is detected, `cargo new` SHOULD add the new package to `workspace.members`.
 
 <a id="r-package.workspace-status"></a>
-[_*_](#r-exit.creation)
+[_*_](#r-package.workspace-status)
 `cargo new` SHALL print a addition status message describing the package being added as a workspace member.
 
 <a id="r-package.workspace.package"></a>
