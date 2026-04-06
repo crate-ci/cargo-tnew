@@ -2,6 +2,7 @@ use crate::prelude::*;
 use cargo_test_support::file;
 use cargo_test_support::str;
 
+/// Primary spec: `r-path.required`.
 #[cargo_test]
 fn case() {
     snapbox::cmd::Command::cargo_ui()

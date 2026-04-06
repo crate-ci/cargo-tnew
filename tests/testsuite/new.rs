@@ -27,6 +27,7 @@ fn create_default_gitconfig() {
     .unwrap();
 }
 
+/// Primary spec: `r-target.lib-fn`.
 #[cargo_test]
 fn simple_lib() {
     cargo_process("new --lib foo --vcs none --edition 2015")
@@ -66,6 +67,7 @@ mod tests {
     cargo_process("build").cwd(&paths::root().join("foo")).run();
 }
 
+/// Primary spec: `r-target.bin-main`.
 #[cargo_test]
 fn simple_bin() {
     cargo_process("new --bin foo --edition 2015")
@@ -86,6 +88,7 @@ fn simple_bin() {
         .is_file());
 }
 
+/// Primary spec: `r-kind.conflict`.
 #[cargo_test]
 fn both_lib_and_bin() {
     cargo_process("new --lib --bin foo")
@@ -97,6 +100,7 @@ fn both_lib_and_bin() {
         .run();
 }
 
+/// Primary spec: `r-vcs.default`.
 #[cargo_test]
 fn simple_git() {
     cargo_process("new --lib foo --edition 2015").run();
@@ -114,6 +118,7 @@ fn simple_git() {
     cargo_process("build").cwd(&paths::root().join("foo")).run();
 }
 
+/// Primary spec: `r-vcs.optional`.
 #[cargo_test(requires = "hg")]
 fn simple_hg() {
     cargo_process("new --lib foo --edition 2015 --vcs hg").run();
@@ -131,6 +136,7 @@ fn simple_hg() {
     cargo_process("build").cwd(&paths::root().join("foo")).run();
 }
 
+/// Primary spec: `r-path.required`.
 #[cargo_test]
 fn no_argument() {
     cargo_process("new")
@@ -143,6 +149,7 @@ fn no_argument() {
         .run();
 }
 
+/// Primary spec: `r-path.fail-if-exists`.
 #[cargo_test]
 fn existing() {
     let dst = paths::root().join("foo");
@@ -159,6 +166,7 @@ Use `cargo init` to initialize the directory
         .run();
 }
 
+/// Primary spec: `r-name.fail-invalid-package-names`.
 #[cargo_test]
 fn invalid_characters() {
     cargo_process("new foo.rs")
@@ -173,6 +181,7 @@ fn invalid_characters() {
         .run();
 }
 
+/// Primary spec: `r-name.fail-test`.
 #[cargo_test]
 fn reserved_name() {
     cargo_process("new test")
@@ -193,6 +202,7 @@ fn reserved_name() {
         .run();
 }
 
+/// Primary spec: `r-name.fail-artifact`.
 #[cargo_test]
 fn reserved_binary_name() {
     cargo_process("new --bin incremental")
@@ -216,6 +226,7 @@ fn reserved_binary_name() {
         .run();
 }
 
+/// Primary spec: `r-name.fail-keywords`.
 #[cargo_test]
 fn keyword_name() {
     cargo_process("new pub")
@@ -236,6 +247,7 @@ fn keyword_name() {
         .run();
 }
 
+/// Primary spec: `r-name.warn-sysroot`.
 #[cargo_test]
 fn std_name() {
     cargo_process("new core").with_stderr_data(str![[r#"
@@ -255,6 +267,7 @@ It is recommended to use a different name to avoid problems.
 "#]]).run();
 }
 
+/// Primary spec: `r-vcs.optional`.
 #[cargo_test]
 fn git_prefers_command_line() {
     let root = paths::root();
@@ -277,6 +290,7 @@ fn git_prefers_command_line() {
         .contains("authors ="));
 }
 
+/// Primary spec: `r-vcs.default`.
 #[cargo_test]
 fn subpackage_no_git() {
     cargo_process("new foo").run();
@@ -296,6 +310,7 @@ fn subpackage_no_git() {
         .is_file());
 }
 
+/// Primary spec: `r-vcs.default`.
 #[cargo_test]
 fn subpackage_git_with_gitignore() {
     cargo_process("new foo").run();
@@ -318,6 +333,7 @@ fn subpackage_git_with_gitignore() {
         .is_file());
 }
 
+/// Primary spec: `r-vcs.optional`.
 #[cargo_test]
 fn subpackage_git_with_vcs_arg() {
     cargo_process("new foo").run();
@@ -334,6 +350,7 @@ fn subpackage_git_with_vcs_arg() {
         .is_file());
 }
 
+/// Primary spec: `r-exit.cli-failure-code`.
 #[cargo_test]
 fn unknown_flags() {
     cargo_process("new foo --flag")
@@ -345,6 +362,7 @@ fn unknown_flags() {
         .run();
 }
 
+/// Primary spec: `r-name.fail-invalid-package-names`.
 #[cargo_test]
 fn explicit_invalid_name_not_suggested() {
     cargo_process("new --name 10-invalid a")
@@ -363,6 +381,7 @@ fn explicit_invalid_name_not_suggested() {
         .run();
 }
 
+/// Primary spec: `r-package.name`.
 #[cargo_test]
 fn explicit_project_name() {
     cargo_process("new --lib foo --name bar")
@@ -374,6 +393,7 @@ fn explicit_project_name() {
         .run();
 }
 
+/// Primary spec: `r-package.edition-option`.
 #[cargo_test]
 fn new_with_edition_2015() {
     cargo_process("new --edition 2015 foo").run();
@@ -381,6 +401,7 @@ fn new_with_edition_2015() {
     assert!(manifest.contains("edition = \"2015\""));
 }
 
+/// Primary spec: `r-package.edition-option`.
 #[cargo_test]
 fn new_with_edition_2018() {
     cargo_process("new --edition 2018 foo").run();
@@ -388,6 +409,7 @@ fn new_with_edition_2018() {
     assert!(manifest.contains("edition = \"2018\""));
 }
 
+/// Primary spec: `r-package.edition-default`.
 #[cargo_test]
 fn new_default_edition() {
     cargo_process("new foo").run();
@@ -395,6 +417,7 @@ fn new_default_edition() {
     assert!(manifest.contains("edition = \"2024\""));
 }
 
+/// Primary spec: `r-package.edition-valid`.
 #[cargo_test]
 fn new_with_bad_edition() {
     cargo_process("new --edition something_else foo")
@@ -406,6 +429,7 @@ fn new_with_bad_edition() {
         .run();
 }
 
+/// Primary spec: `r-package.create-cargo-toml`.
 #[cargo_test]
 fn lockfile_constant_during_new() {
     cargo_process("new foo").run();
@@ -417,6 +441,7 @@ fn lockfile_constant_during_new() {
     assert_eq!(before, after);
 }
 
+/// Primary spec: `r-name.fail-windows-reserved`.
 #[cargo_test]
 fn restricted_windows_name() {
     if cfg!(windows) {
@@ -441,6 +466,7 @@ This package will not work on Windows platforms.
     }
 }
 
+/// Primary spec: `r-name.warn-non-ascii`.
 #[cargo_test]
 fn non_ascii_name() {
     cargo_process("new Привет").with_stderr_data(str![[r#"
@@ -453,6 +479,7 @@ Non-ASCII crate names are not supported by Rust.
 "#]]).run();
 }
 
+/// Primary spec: `r-name.fail-invalid-package-names`.
 #[cargo_test]
 fn non_ascii_name_invalid() {
     // These are alphanumeric characters, but not Unicode XID.
@@ -491,6 +518,7 @@ fn non_ascii_name_invalid() {
         .run();
 }
 
+/// Primary spec: `r-name.warn-case`.
 #[cargo_test]
 fn non_snake_case_name() {
     cargo_process("new UPPERcase_name")
@@ -503,6 +531,7 @@ fn non_snake_case_name() {
         .run();
 }
 
+/// Primary spec: `r-name.warn-case`.
 #[cargo_test]
 fn kebab_case_name_is_accepted() {
     cargo_process("new kebab-case-is-valid")
@@ -514,6 +543,7 @@ fn kebab_case_name_is_accepted() {
         .run();
 }
 
+/// Primary spec: `r-vcs.default`.
 #[cargo_test]
 fn git_default_branch() {
     // Check for init.defaultBranch support.
@@ -538,6 +568,7 @@ fn git_default_branch() {
     assert_eq!(head.symbolic_target().unwrap(), "refs/heads/hello");
 }
 
+/// Primary spec: `r-vcs.ignore`.
 #[cargo_test]
 #[ignore]
 fn non_utf8_str_in_ignore_file() {
@@ -558,6 +589,7 @@ Caused by:
         .run();
 }
 
+/// Primary spec: `r-path.warn-invalid-path`.
 #[cfg(unix)]
 #[cargo_test]
 fn path_with_invalid_character() {
