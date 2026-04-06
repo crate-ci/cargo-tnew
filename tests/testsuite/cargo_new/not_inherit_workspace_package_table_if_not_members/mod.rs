@@ -5,6 +5,7 @@ use cargo_test_support::file;
 use cargo_test_support::str;
 use cargo_test_support::Project;
 
+/// Primary spec: `r-package.workspace-members`.
 #[cargo_test]
 fn case() {
     let project = Project::from_template(current_dir!().join("in"));
