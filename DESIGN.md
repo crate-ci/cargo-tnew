@@ -3,7 +3,7 @@
 ## Conventions
 
 Each normative line item has a stable identifier.
-Before each lint item is `_*_` which links to an HTML anchor named for the identifier at that exact line item.
+Before each line item is `_*_` which links to an HTML anchor named for the identifier at that exact line item.
 Identifiers are lowercase,
 start with `r-`,
 include a short kebab-case phrase for each parent header separated by `.`,
@@ -46,7 +46,7 @@ If no output kind is specified,
 
 <a id="r-kind.conflict"></a>
 [_*_](#r-kind.conflict)
-`cargo new` SHALL fail if more than out output kind is specified.
+`cargo new` SHALL fail if more than one output kind is specified.
 
 ## Version control integration
 
@@ -119,11 +119,11 @@ The package name SHALL default to the final path component when `--name` is not 
 
 <a id="r-name.warn-case"></a>
 [_*_](#r-name.warn-case)
-`cargo new` SHALL warn for names that is neither snake_case or kebab-case.
+`cargo new` SHALL warn for names that are neither snake_case nor kebab-case.
 
 <a id="r-name.warn-non-ascii"></a>
 [_*_](#r-name.warn-non-ascii)
-`cargo new` SHALL warn for names are not ASCII.
+`cargo new` SHALL warn for names that are not ASCII.
 
 ## Package output
 
@@ -133,7 +133,7 @@ The package name SHALL default to the final path component when `--name` is not 
 
 <a id="r-package.status"></a>
 [_*_](#r-package.status)
-`cargo new` SHALL print a creation status message describing the package being created.
+`cargo new` SHALL print a "creation" status message describing the package being created.
 
 <a id="r-package.name"></a>
 [_*_](#r-package.name)
@@ -177,7 +177,7 @@ When an ancestor workspace is detected, `cargo new` SHOULD add the new package t
 
 <a id="r-package.workspace-status"></a>
 [_*_](#r-package.workspace-status)
-`cargo new` SHALL print a addition status message describing the package being added as a workspace member.
+`cargo new` SHALL print an "addition" status message describing the package being added as a workspace member.
 
 <a id="r-package.workspace.package"></a>
 [_*_](#r-package.workspace.package)
