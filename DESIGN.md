@@ -191,7 +191,7 @@ When added as a workspace member, `cargo new` SHALL inherit `[workspace.lints]` 
 
 <a id="r-target.bin"></a>
 [_*_](#r-target.bin)
-A binary build-target SHALL generate `src/main.rs`.
+The binary output kind SHALL generate `src/main.rs`.
 
 <a id="r-target.bin-compile"></a>
 [_*_](#r-target.bin-compile)
@@ -203,7 +203,7 @@ Generated source content for a binary package SHALL include a minimal `main` fun
 
 <a id="r-target.lib"></a>
 [_*_](#r-target.lib)
-A library build-target SHALL generate `src/lib.rs`.
+The library output kind SHALL generate `src/lib.rs`.
 
 <a id="r-target.lib-compile"></a>
 [_*_](#r-target.lib-compile)
