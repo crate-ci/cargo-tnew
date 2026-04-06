@@ -27,7 +27,7 @@ A relative `PATH` argument SHALL be interpreted relative to the process working 
 
 <a id="r-path.warn-invalid-path"></a>
 [_*_](#r-path.warn-invalid-path)
-`cargo new` SHALL warn if the destination path cannot be added to `PATH`, like with `std::env::join_paths`
+`cargo new` SHALL warn if the destination path cannot be added to `PATH`, like with `std::env::join_paths`.
 
 ## Output kind selection
 
@@ -46,7 +46,7 @@ If no output kind is specified,
 
 <a id="r-kind.conflict"></a>
 [_*_](#r-kind.conflict)
-`cargo new` SHALL fail if more than out output kind is specified,
+`cargo new` SHALL fail if more than out output kind is specified.
 
 ## Version control integration
 
