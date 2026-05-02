@@ -31,9 +31,9 @@ pub struct PijulRepo;
 pub struct FossilRepo;
 
 impl GitRepo {
-    pub fn init(path: &Path, _: &Path) -> CargoResult<GitRepo> {
+    pub fn init(path: &Path, _: &Path) -> CargoResult<Self> {
         git2::Repository::init(path)?;
-        Ok(GitRepo)
+        Ok(Self)
     }
     pub fn discover(path: &Path, _: &Path) -> Result<git2::Repository, git2::Error> {
         git2::Repository::discover(path)
@@ -41,40 +41,40 @@ impl GitRepo {
 }
 
 impl HgRepo {
-    pub fn init(path: &Path, cwd: &Path) -> CargoResult<HgRepo> {
+    pub fn init(path: &Path, cwd: &Path) -> CargoResult<Self> {
         ProcessBuilder::new("hg")
             .cwd(cwd)
             .arg("init")
             .arg("--")
             .arg(path)
             .exec()?;
-        Ok(HgRepo)
+        Ok(Self)
     }
-    pub fn discover(path: &Path, cwd: &Path) -> CargoResult<HgRepo> {
+    pub fn discover(path: &Path, cwd: &Path) -> CargoResult<Self> {
         ProcessBuilder::new("hg")
             .cwd(cwd)
             .arg("--cwd")
             .arg(path)
             .arg("root")
             .exec_with_output()?;
-        Ok(HgRepo)
+        Ok(Self)
     }
 }
 
 impl PijulRepo {
-    pub fn init(path: &Path, cwd: &Path) -> CargoResult<PijulRepo> {
+    pub fn init(path: &Path, cwd: &Path) -> CargoResult<Self> {
         ProcessBuilder::new("pijul")
             .cwd(cwd)
             .arg("init")
             .arg("--")
             .arg(path)
             .exec()?;
-        Ok(PijulRepo)
+        Ok(Self)
     }
 }
 
 impl FossilRepo {
-    pub fn init(path: &Path, cwd: &Path) -> CargoResult<FossilRepo> {
+    pub fn init(path: &Path, cwd: &Path) -> CargoResult<Self> {
         // fossil doesn't create the directory so we'll do that first
         paths::create_dir_all(path)?;
 
@@ -99,6 +99,6 @@ impl FossilRepo {
             .arg(db_fname)
             .exec()?;
 
-        Ok(FossilRepo)
+        Ok(Self)
     }
 }

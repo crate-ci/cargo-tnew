@@ -20,7 +20,7 @@ impl Default for GlobalContext {
 }
 
 impl GlobalContext {
-    pub fn new() -> GlobalContext {
+    pub fn new() -> Self {
         Self {
             shell: RefCell::new(Shell::new()),
             cwd: std::env::current_dir().unwrap_or_else(|_| PathBuf::from(".")),

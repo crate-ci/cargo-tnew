@@ -34,11 +34,11 @@ impl FromStr for VersionControl {
 
     fn from_str(s: &str) -> Result<Self, anyhow::Error> {
         match s {
-            "git" => Ok(VersionControl::Git),
-            "hg" => Ok(VersionControl::Hg),
-            "pijul" => Ok(VersionControl::Pijul),
-            "fossil" => Ok(VersionControl::Fossil),
-            "none" => Ok(VersionControl::NoVcs),
+            "git" => Ok(Self::Git),
+            "hg" => Ok(Self::Hg),
+            "pijul" => Ok(Self::Pijul),
+            "fossil" => Ok(Self::Fossil),
+            "none" => Ok(Self::NoVcs),
             other => anyhow::bail!("unknown vcs specification: `{}`", other),
         }
     }
@@ -74,15 +74,15 @@ pub enum NewProjectKind {
 
 impl NewProjectKind {
     fn is_bin(self) -> bool {
-        self == NewProjectKind::Bin
+        self == Self::Bin
     }
 }
 
 impl fmt::Display for NewProjectKind {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match *self {
-            NewProjectKind::Bin => "binary (application)",
-            NewProjectKind::Lib => "library",
+            Self::Bin => "binary (application)",
+            Self::Lib => "library",
         }
         .fmt(f)
     }
@@ -111,7 +111,7 @@ impl NewOptions {
         name: Option<String>,
         edition: Option<String>,
         registry: Option<String>,
-    ) -> CargoResult<NewOptions> {
+    ) -> CargoResult<Self> {
         let auto_detect_kind = !bin && !lib;
 
         let kind = match (bin, lib) {
@@ -120,7 +120,7 @@ impl NewOptions {
             (_, false) => NewProjectKind::Bin,
         };
 
-        let opts = NewOptions {
+        let opts = Self {
             version_control,
             kind,
             auto_detect_kind,
@@ -619,8 +619,8 @@ struct IgnoreList {
 
 impl IgnoreList {
     /// constructor to build a new ignore file
-    fn new() -> IgnoreList {
-        IgnoreList {
+    fn new() -> Self {
+        Self {
             ignore: Vec::new(),
             hg_ignore: Vec::new(),
             fossil_ignore: Vec::new(),
